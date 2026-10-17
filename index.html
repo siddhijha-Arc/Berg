@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Berg — Coding Practice</title>
+<meta name="description" content="Daily coding practice platform with beginner-friendly problems, online compiler, and curated logic challenges." />
+<meta property="og:title" content="Berg — Coding Practice" />
+<meta property="og:description" content="Daily coding practice platform with beginner-friendly problems, online compiler, and curated logic challenges." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'pixel-lime': '#f1ffd2',
+          'sky-cyan': '#99ecff',
+          'electric-violet': '#6120ee',
+          'deep-ultraviolet': '#4a17b0',
+          'lavender-pixel': '#ab77ff',
+          'lilac-wash': '#d0b7f9',
+          'bubblegum-pink': '#ffddfa',
+          'forest-pixel': '#004012',
+          'cobalt-pixel': '#0a4dce',
+          'paper-white': '#ffffff',
+          'hairline-gray': '#e5e7eb',
+          'fog-surface': '#f4f4f5',
+          'ink-black': '#000000',
+          'graphite': '#1b1b1d',
+          'carbon': '#252527',
+          'obsidian': '#121216',
+          'slate-body': '#383a42',
+          'ash': '#787882',
+        },
+        fontFamily: {
+          display: ['Antonio', 'sans-serif'],
+          body: ['Plus Jakarta Sans', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        borderRadius: {
+          'sticker': '12px',
+          'pill': '4px',
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .fal-border {
+      border: 1px solid #e5e7eb;
+    }
+    .fal-border-thick {
+      border: 1px solid #1b1b1d;
+    }
+    .slush-display {
+      font-family: 'Antonio', sans-serif;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.025em;
+    }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 24s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .paper-canvas {
+    background-color: #ffffff;
+  }
+
+  /* Editor Typography & Scrollbars */
+  .font-mono-code, pre, code, .code-editor-font {
+    font-family: 'JetBrains Mono', monospace !important;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+  }
+
+  /* Error highlight pulse in editor */
+  @keyframes error-line-flash {
+    0%, 100% { background-color: rgba(251, 73, 3, 0.2); }
+    50% { background-color: rgba(251, 73, 3, 0.4); }
+  }
+  .line-error-active {
+    animation: error-line-flash 0.8s ease-in-out infinite alternate;
+  }
+
+  /* Splitter Resizer handle */
+  .resizer-splitter {
+    height: 6px;
+    cursor: row-resize;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .resizer-splitter:hover, .resizer-splitter.is-dragging {
+    background: #6120ee;
+  }
+</style>
+</head>
+<body class="min-h-screen bg-paper-white text-graphite selection:bg-sky-cyan selection:text-ink-black m-0 p-0 overflow-x-hidden flex flex-col justify-between font-body">
+
+<!-- ========================================================================= -->
+<!-- 1. BERG HOMEPAGE & HERO SECTION (Fal Generative AI Style)                 -->
+<!-- ========================================================================= -->
+<div id="view-home-landing" class="min-h-screen w-full flex flex-col justify-between paper-canvas">
+  <!-- Top Announcement Bar -->
+  <aside aria-label="Berg Live Announcement" class="w-full bg-[#d0b7f9] text-graphite border-b border-[#e5e7eb] overflow-hidden py-2 select-none z-50">
+    <div class="animate-marquee items-center text-[12px] font-semibold tracking-wide uppercase">
+      <div class="flex items-center space-x-8 shrink-0 pr-8">
+        <span>⚡ C / C++ CLOUD COMPILER</span>
+        <span class="w-2 h-2 rounded-full bg-[#6120ee]"></span>
+        <span>SAFE CODING ENVIRONMENT</span>
+        <span class="w-2 h-2 rounded-full bg-[#004012]"></span>
+        <span>YOUR CODE STAYS PRIVATE</span>
+        <span class="w-2 h-2 rounded-full bg-[#6120ee]"></span>
+        <span>DAILY CODING PRACTICE</span>
+        <span class="w-2 h-2 rounded-full bg-[#ab77ff]"></span>
+        <span>NEW BEGINNER PROBLEMS</span>
+      </div>
+      <div class="flex items-center space-x-8 shrink-0 pr-8">
+        <span>⚡ C / C++ CLOUD COMPILER</span>
+        <span class="w-2 h-2 rounded-full bg-[#6120ee]"></span>
+        <span>SAFE CODING ENVIRONMENT</span>
+        <span class="w-2 h-2 rounded-full bg-[#004012]"></span>
+        <span>YOUR CODE STAYS PRIVATE</span>
+        <span class="w-2 h-2 rounded-full bg-[#6120ee]"></span>
+        <span>DAILY CODING PRACTICE</span>
+        <span class="w-2 h-2 rounded-full bg-[#ab77ff]"></span>
+        <span>NEW BEGINNER PROBLEMS</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Top Navigation Bar -->
+  <header class="max-w-[1200px] w-full mx-auto px-6 lg:px-12 py-4 flex items-center justify-between z-40 relative bg-paper-white border-b border-[#e5e7eb]">
+    <div class="inline-flex items-center gap-3 select-none">
+      <div class="w-10 h-10 rounded-[4px] bg-carbon text-white flex items-center justify-center font-display text-xl font-bold">
+        B
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="font-display text-2xl tracking-tight text-ink-black font-bold uppercase">BERG</span>
+        <span class="font-body text-[10px] font-semibold tracking-widest text-ash uppercase">Coding Practice</span>
+      </div>
+    </div>
+
+    <!-- Right-aligned Navigation Bar -->
+    <nav class="flex items-center gap-2 bg-fog-surface p-1 rounded-[4px] border border-hairline-gray ml-auto select-none">
+      <a class="px-4 py-1.5 rounded-[4px] bg-carbon text-white text-[13px] font-semibold tracking-wide cursor-default" href="#" onclick="event.preventDefault()">
+        Home
+      </a>
+      <a class="px-4 py-1.5 rounded-[4px] bg-transparent text-graphite text-[13px] font-semibold tracking-wide hover:bg-white cursor-default" href="#" onclick="event.preventDefault()">
+        Practice
+      </a>
+      <a class="px-4 py-1.5 rounded-[4px] bg-transparent text-graphite text-[13px] font-semibold tracking-wide hover:bg-white cursor-default flex items-center gap-1.5" href="#" onclick="event.preventDefault()">
+        <span>Compiler</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-electric-violet"></span>
+      </a>
+      <a class="px-4 py-1.5 rounded-[4px] bg-transparent text-graphite text-[13px] font-semibold tracking-wide hover:bg-white cursor-default" href="#" onclick="event.preventDefault()">
+        Workspace
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero Section (Sky Cyan #99ecff Full-Bleed Band) -->
+  <section class="w-full bg-[#99ecff] py-20 lg:py-28 relative overflow-hidden">
+    <!-- Scattered 8-bit pixel art decorations -->
+    <div class="absolute top-10 left-12 w-6 h-6 bg-[#f1ffd2] border border-[#004012] opacity-80 rotate-12"></div>
+    <div class="absolute bottom-12 left-1/4 w-8 h-8 bg-[#ab77ff] border border-[#004012] opacity-80 -rotate-6"></div>
+    <div class="absolute top-1/3 right-16 w-10 h-6 bg-[#ffddfa] border border-[#0a4dce] opacity-90 rotate-45"></div>
+    <div class="absolute bottom-16 right-1/3 w-6 h-10 bg-[#f1ffd2] border border-[#004012] opacity-80 -rotate-12"></div>
+
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-7 flex flex-col space-y-6">
+        <div class="inline-flex items-center gap-2 self-start bg-white px-3 py-1 rounded-[4px] border border-hairline-gray select-none">
+          <span class="w-2 h-2 rounded-full bg-electric-violet animate-pulse"></span>
+          <span class="font-mono text-[11px] font-bold tracking-wider uppercase text-graphite">
+            BERG • SECURE CLOUD SANDBOX
+          </span>
+        </div>
+
+        <h1 class="slush-display text-[56px] sm:text-[72px] lg:text-[88px] text-ink-black select-none tracking-tighter">
+          CODE YOUR <br/>
+          <span class="relative inline-block text-electric-violet">
+            FIRST LOGIC.
+          </span> <br/>
+          MASTER THE BASICS.
+        </h1>
+
+        <p class="font-body text-base sm:text-lg text-slate-body max-w-xl leading-relaxed">
+          Practise coding basics, run your programs instantly, see your results, and understand errors with ease in our high-speed environment.
+        </p>
+        
+        <!-- Only Two Functional Hero CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <!-- Button 1: Start Practising -->
+          <button class="px-6 py-3 rounded-[4px] bg-carbon text-white font-body text-[14px] font-semibold tracking-wide hover:bg-slate-800 transition-all flex items-center gap-2.5 cursor-pointer" id="btn-start-practicing-hero">
+            <span class="material-symbols-outlined text-[18px] text-pixel-lime">play_arrow</span>
+            <span>Start Practising</span>
+          </button>
+          
+          <!-- Button 2: Open Code Editor -->
+          <button class="px-6 py-3 rounded-[4px] bg-white hover:bg-fog-surface border border-graphite text-[14px] font-semibold font-body text-graphite transition-all cursor-pointer flex items-center gap-2" id="btn-open-compiler-hero">
+            <span class="material-symbols-outlined text-[18px] text-electric-violet">code</span>
+            <span>Open Code Editor</span>
+          </button>
+        </div>
+
+        <div class="pt-6 flex flex-wrap items-center gap-6 border-t border-black/15 text-xs font-semibold text-graphite select-none">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#004012]"></span>
+            <span>SAFE & PRIVATE</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-electric-violet"></span>
+            <span>YOUR CODE IS NOT SAVED</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#0a4dce]"></span>
+            <span>FAIR USAGE LIMITS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mascot / Visual Side with White Splash Background -->
+      <div class="lg:col-span-5 flex justify-center items-end relative select-none">
+        <div class="absolute w-[340px] h-[340px] sm:w-[410px] sm:h-[410px] bg-white rounded-[45%_55%_65%_35%/50%_40%_60%_50%] border border-hairline-gray z-0 transform translate-y-4"></div>
+        <img alt="Mascot" class="w-full max-w-[440px] h-auto max-h-[420px] object-contain object-bottom drop-shadow-none relative z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMQ0qtxzYx96W2vGLMhMsA8FU3M1Zb5QVIz7cvY7hthhxIxz4HtzoruEAvVDN5ZBfvmp-3QNhdlRzJwbxhmebCFNB4EJkWl3k0hf6KPTuwX71NOz2TTQbXIQVrtusUkZczWj8IMLabaacqHY2wYPXTTDGBa5OLFQiFL9JSwxdKrtxs5QYZcFbsE2E5ovAgu6qzGWD71F3335ArlgKL7C7IekNdcluGsDi-uMe4pJB42W2Hj7VmLcQNtAEQpldgb5Fn0w"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curated Logic Challenges Section -->
+  <section class="max-w-[1200px] w-full mx-auto px-6 lg:px-12 py-20 z-30 relative">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-[4px] bg-pixel-lime border border-hairline-gray text-xs font-bold uppercase font-mono mb-3 select-none">
+          <span>⚡ BEGINNER CURATED</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-ink-black font-bold uppercase tracking-tight select-none">
+          PRACTISE LOGIC CHALLENGES
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 select-none">
+      <!-- Challenge 1 -->
+      <div class="bg-white rounded-sticker border border-hairline-gray p-6 flex flex-col justify-between hover:border-electric-violet transition-colors">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-0.5 rounded-[4px] text-[10px] font-bold uppercase bg-sky-cyan text-graphite border border-hairline-gray">Loops</span>
+            <span class="text-[11px] font-mono text-ash">Problem A</span>
+          </div>
+          <h3 class="font-display text-xl font-bold uppercase text-ink-black mb-2">Sum of Digits</h3>
+          <p class="font-body text-xs text-slate-body mb-6 leading-relaxed">
+            Read an integer N from standard input and compute the sum of its decimal digits.
+          </p>
+        </div>
+        <button class="w-full py-2 px-4 rounded-[4px] bg-fog-surface text-graphite hover:bg-carbon hover:text-white text-xs font-semibold border border-hairline-gray flex items-center justify-center gap-2 cursor-default transition-colors" onclick="event.preventDefault()">
+          <span>Solve in Compiler</span>
+          <span class="material-symbols-outlined text-[14px] text-electric-violet">terminal</span>
+        </button>
+      </div>
+
+      <!-- Challenge 2 -->
+      <div class="bg-white rounded-sticker border border-hairline-gray p-6 flex flex-col justify-between hover:border-electric-violet transition-colors">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-0.5 rounded-[4px] text-[10px] font-bold uppercase bg-pixel-lime text-graphite border border-hairline-gray">Math</span>
+            <span class="text-[11px] font-mono text-ash">Problem B</span>
+          </div>
+          <h3 class="font-display text-xl font-bold uppercase text-ink-black mb-2">Prime Check</h3>
+          <p class="font-body text-xs text-slate-body mb-6 leading-relaxed">
+            Determine if a given integer N is prime. Print "YES" or "NO" with time complexity O(sqrt(N)).
+          </p>
+        </div>
+        <button class="w-full py-2 px-4 rounded-[4px] bg-fog-surface text-graphite hover:bg-carbon hover:text-white text-xs font-semibold border border-hairline-gray flex items-center justify-center gap-2 cursor-default transition-colors" onclick="event.preventDefault()">
+          <span>Solve in Compiler</span>
+          <span class="material-symbols-outlined text-[14px] text-electric-violet">terminal</span>
+        </button>
+      </div>
+
+      <!-- Challenge 3 -->
+      <div class="bg-white rounded-sticker border border-hairline-gray p-6 flex flex-col justify-between hover:border-electric-violet transition-colors">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-0.5 rounded-[4px] text-[10px] font-bold uppercase bg-lilac-wash text-graphite border border-hairline-gray">Recursion</span>
+            <span class="text-[11px] font-mono text-ash">Problem C</span>
+          </div>
+          <h3 class="font-display text-xl font-bold uppercase text-ink-black mb-2">Factorial of N</h3>
+          <p class="font-body text-xs text-slate-body mb-6 leading-relaxed">
+            Compute the factorial N! using iterative multiplication or recursive calls for N &le; 20.
+          </p>
+        </div>
+        <button class="w-full py-2 px-4 rounded-[4px] bg-fog-surface text-graphite hover:bg-carbon hover:text-white text-xs font-semibold border border-hairline-gray flex items-center justify-center gap-2 cursor-default transition-colors" onclick="event.preventDefault()">
+          <span>Solve in Compiler</span>
+          <span class="material-symbols-outlined text-[14px] text-electric-violet">terminal</span>
+        </button>
+      </div>
+
+      <!-- Challenge 4 -->
+      <div class="bg-white rounded-sticker border border-hairline-gray p-6 flex flex-col justify-between hover:border-electric-violet transition-colors">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-0.5 rounded-[4px] text-[10px] font-bold uppercase bg-bubblegum-pink text-graphite border border-hairline-gray">Strings</span>
+            <span class="text-[11px] font-mono text-ash">Problem D</span>
+          </div>
+          <h3 class="font-display text-xl font-bold uppercase text-ink-black mb-2">Palindrome</h3>
+          <p class="font-body text-xs text-slate-body mb-6 leading-relaxed">
+            Check if a word reads identically forwards and backwards using two-pointer verification.
+          </p>
+        </div>
+        <button class="w-full py-2 px-4 rounded-[4px] bg-fog-surface text-graphite hover:bg-carbon hover:text-white text-xs font-semibold border border-hairline-gray flex items-center justify-center gap-2 cursor-default transition-colors" onclick="event.preventDefault()">
+          <span>Solve in Compiler</span>
+          <span class="material-symbols-outlined text-[14px] text-electric-violet">terminal</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Dock -->
+  <footer class="w-full bg-carbon text-white py-8 px-6 lg:px-12 z-30 select-none border-t border-hairline-gray">
+    <div class="max-w-[1200px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/70">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-pixel-lime"></span>
+        <span>BERG CODING PRACTICE • SECURE RUNTIME</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <span class="text-white/50">Your Code Stays Private • Ephemeral Execution</span>
+        <span class="text-white">Compiler Online</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================================================= -->
+<!-- 2. QUESTIONS-WITH-COMPILER WORKSPACE (OPENS VIA START PRACTISING)         -->
+<!-- ========================================================================= -->
+<div id="view-practice-arena" class="h-screen w-screen hidden flex-col overflow-hidden bg-paper-white text-graphite">
+  <!-- Arena Navigation Bar -->
+  <header class="h-16 px-6 bg-paper-white border-b border-hairline-gray shrink-0 flex items-center justify-between z-30 select-none">
+    <div class="flex items-center gap-4 min-w-0">
+      <!-- Back Home Button -->
+      <button class="bg-white hover:bg-fog-surface text-graphite text-xs font-semibold px-3.5 py-2 rounded-[4px] border border-hairline-gray flex items-center gap-1.5 transition-colors cursor-pointer shrink-0" id="btn-practice-back-home" title="Return to Berg Home">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        <span class="hidden sm:inline">Home</span>
+      </button>
+
+      <!-- Weekly Contest Badge -->
+      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-[4px] bg-pixel-lime text-graphite border border-hairline-gray text-xs font-bold font-mono uppercase shrink-0">
+        <span class="w-2 h-2 rounded-full bg-electric-violet animate-pulse"></span>
+        <span>Weekly #12</span>
+      </div>
+
+      <!-- Problem Switcher Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto py-1 custom-scrollbar" id="arena-problem-pills">
+        <button class="arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-carbon text-white shrink-0" data-problem="A">A. Array Sum</button>
+        <button class="arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-white text-graphite hover:bg-fog-surface shrink-0" data-problem="B">B. Prefix Product</button>
+        <button class="arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-white text-graphite hover:bg-fog-surface shrink-0" data-problem="C">C. Unique Pairs</button>
+        <button class="arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-white text-graphite hover:bg-fog-surface shrink-0" data-problem="D">D. Maximum Flow</button>
+        <button class="arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-white text-graphite hover:bg-fog-surface shrink-0" data-problem="E">E. Interval Tree</button>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-3 shrink-0">
+      <div class="hidden md:flex items-center px-3 py-1 bg-fog-surface rounded-[4px] border border-hairline-gray text-xs font-mono font-semibold">
+        <span>C / C++ (GCC 13.2)</span>
+      </div>
+
+      <button class="bg-white hover:bg-fog-surface text-graphite font-semibold text-xs px-4 py-2 rounded-[4px] border border-hairline-gray flex items-center gap-1.5 cursor-pointer" id="btn-arena-run">
+        <span class="material-symbols-outlined text-[16px] text-electric-violet">play_arrow</span>
+        <span>Run Tests</span>
+      </button>
+
+      <button class="bg-carbon hover:bg-slate-800 text-white font-semibold text-xs px-4 py-2 rounded-[4px] flex items-center gap-1.5 cursor-pointer" id="btn-arena-submit">
+        <span class="material-symbols-outlined text-[16px] text-pixel-lime">cloud_upload</span>
+        <span>Submit Solution</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Arena Body -->
+  <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 p-4 gap-4 min-h-0 overflow-hidden bg-fog-surface">
+    <!-- Left Column: Problem Details -->
+    <section class="lg:col-span-5 bg-white rounded-sticker border border-hairline-gray flex flex-col overflow-hidden min-h-0">
+      <div class="h-12 px-5 bg-paper-white border-b border-hairline-gray flex items-center justify-between shrink-0 select-none">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-electric-violet"></span>
+          <span class="font-display font-bold text-sm uppercase text-ink-black" id="arena-problem-title">A. Array Sum</span>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] font-mono text-ash">
+          <span class="px-2 py-0.5 rounded-[4px] bg-pixel-lime text-graphite font-semibold border border-hairline-gray" id="arena-difficulty">EASY</span>
+          <span id="arena-time-limit">1.0s / 256MB</span>
+        </div>
+      </div>
+
+      <div class="flex-1 p-5 overflow-y-auto custom-scrollbar font-body text-xs space-y-4">
+        <div>
+          <h4 class="font-bold text-ink-black uppercase tracking-wider text-[11px] mb-1">Problem Statement</h4>
+          <p class="text-slate-body leading-relaxed" id="arena-problem-desc">
+            Given an array of $N$ integers and $Q$ queries, for each query calculate the sum of numbers between indices $L$ and $R$ (1-indexed). Return the computed sum for each query on a new line.
+          </p>
+        </div>
+
+        <div class="space-y-1.5">
+          <h4 class="font-bold text-ink-black uppercase tracking-wider text-[11px]">Input Format</h4>
+          <div class="p-3 bg-fog-surface rounded-[4px] border border-hairline-gray font-mono text-[11px] text-slate-body" id="arena-input-format">
+            First line contains integer N (size of array). Second line contains N integers. Third line contains Q. Following Q lines contain pairs L and R.
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <h4 class="font-bold text-ink-black uppercase tracking-wider text-[11px]">Output Format</h4>
+          <div class="p-3 bg-fog-surface rounded-[4px] border border-hairline-gray font-mono text-[11px] text-slate-body" id="arena-output-format">
+            Print the range sum for each query on a separate line.
+          </div>
+        </div>
+
+        <!-- Sample Test Cases -->
+        <div class="space-y-2 pt-3 border-t border-hairline-gray">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-ink-black uppercase tracking-wider text-[11px]">Sample Test Cases</h4>
+            <span class="px-2 py-0.5 rounded-[4px] bg-pixel-lime text-graphite font-mono font-semibold text-[10px] border border-hairline-gray" id="arena-passed-badge">3/3 Passed</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 font-mono text-[11px]">
+            <div class="p-3 bg-fog-surface rounded-[4px] border border-hairline-gray">
+              <span class="text-[10px] text-ash font-bold block mb-1">Sample Input</span>
+              <pre class="text-graphite whitespace-pre" id="arena-sample-input">5
+1 2 3 4 5
+2
+1 3
+2 4</pre>
+            </div>
+            <div class="p-3 bg-fog-surface rounded-[4px] border border-hairline-gray">
+              <span class="text-[10px] text-ash font-bold block mb-1">Sample Output</span>
+              <pre class="text-graphite whitespace-pre" id="arena-sample-output">6
+9</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Code Editor & Results Console -->
+    <section class="lg:col-span-7 flex flex-col gap-4 min-h-0 overflow-hidden">
+      <!-- Code Editor Card -->
+      <div class="flex-1 bg-white rounded-sticker border border-hairline-gray flex flex-col overflow-hidden min-h-0">
+        <div class="h-10 px-4 bg-paper-white border-b border-hairline-gray flex items-center justify-between shrink-0 select-none text-[11px] font-mono text-ash">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-electric-violet"></span>
+            <span id="arena-editor-filename" class="text-graphite font-semibold">solution.cpp</span>
+          </div>
+          <div>
+            <span>C / C++ GCC • Problem Mode</span>
+          </div>
+        </div>
+        <div class="flex-1 flex overflow-hidden min-h-0 relative bg-white">
+          <textarea id="arena-code-textarea" class="flex-1 p-4 font-mono text-[13px] leading-[22px] bg-transparent text-graphite resize-none border-0 outline-none focus:ring-0 custom-scrollbar whitespace-pre overflow-auto" spellcheck="false"></textarea>
+        </div>
+      </div>
+
+      <!-- Results Console Card -->
+      <div class="h-48 bg-white rounded-sticker border border-hairline-gray flex flex-col overflow-hidden shrink-0">
+        <div class="h-10 px-4 bg-paper-white border-b border-hairline-gray flex items-center justify-between shrink-0 select-none text-xs font-semibold font-body">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[15px] text-electric-violet">check_circle</span>
+            <span class="text-ink-black font-bold uppercase tracking-wider text-[11px]">Running Time & Results</span>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-[11px]" id="arena-benchmarks">
+            <span class="px-2 py-0.5 rounded-[4px] bg-pixel-lime text-graphite font-semibold border border-hairline-gray" id="arena-status-badge">Accepted</span>
+            <span class="text-ash" id="arena-time-metric">Running Time: 12ms</span>
+          </div>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto bg-fog-surface custom-scrollbar font-mono text-xs select-text" id="arena-console-stream">
+          <div class="text-ash text-[11px] font-body" id="arena-welcome-msg">
+            Click <strong>Run Tests</strong> or <strong>Submit Solution</strong> to test your logic against automated test cases.
+          </div>
+          <pre class="whitespace-pre-wrap text-graphite" id="arena-console-text"></pre>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- 3. FULL-SCREEN CODE EDITOR WORKSPACE (OPENS VIA OPEN CODE EDITOR)         -->
+<!-- ========================================================================= -->
+<div id="view-compiler" class="h-screen w-screen hidden flex-col overflow-hidden bg-paper-white text-graphite">
+  <!-- Navigation Bar -->
+  <header class="h-16 px-6 bg-paper-white border-b border-hairline-gray shrink-0 flex items-center justify-between z-30 select-none">
+    <div class="flex items-center gap-4 min-w-0">
+      <!-- Back Home Button -->
+      <button class="bg-white hover:bg-fog-surface text-graphite text-xs font-semibold px-3.5 py-2 rounded-[4px] border border-hairline-gray flex items-center gap-1.5 transition-colors cursor-pointer shrink-0" id="btn-compiler-back-home" title="Return to Berg Home">
+        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        <span class="hidden sm:inline">Home</span>
+      </button>
+
+      <!-- Active File Tabs Container -->
+      <div class="flex items-center gap-2 overflow-x-auto py-1 custom-scrollbar max-w-md sm:max-w-lg" id="editor-tabs-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Add New File Tab Button -->
+      <button class="w-7 h-7 rounded-[4px] bg-white hover:bg-fog-surface text-graphite border border-hairline-gray flex items-center justify-center font-bold text-sm transition-colors cursor-pointer shrink-0" id="btn-add-tab" title="New In-Memory File">
+        +
+      </button>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-3 shrink-0">
+      <!-- Language Selector -->
+      <div class="relative">
+        <select id="select-language" class="appearance-none bg-white hover:bg-fog-surface text-graphite text-xs font-semibold px-4 py-2 pr-8 rounded-[4px] border border-hairline-gray font-mono cursor-pointer focus:outline-none">
+          <option value="cpp">C / C++20 (GCC)</option>
+          <option value="c">C / C++17 (GCC)</option>
+        </select>
+        <span class="material-symbols-outlined text-[14px] pointer-events-none absolute right-2.5 top-2.5 text-graphite">expand_more</span>
+      </div>
+
+      <!-- Settings Drawer Trigger -->
+      <button class="w-8 h-8 bg-white hover:bg-fog-surface rounded-[4px] border border-hairline-gray flex items-center justify-center text-graphite cursor-pointer transition-colors" id="btn-open-settings" title="Editor Settings">
+        <span class="material-symbols-outlined text-[17px]">settings</span>
+      </button>
+
+      <!-- Stop Execution Button -->
+      <button class="hidden bg-[#fb4903] text-white text-xs font-semibold px-4 py-2 rounded-[4px] flex items-center gap-1.5 cursor-pointer" id="btn-stop-code" title="Abort in-flight request">
+        <span class="material-symbols-outlined text-[15px]">stop</span>
+        <span>Stop</span>
+      </button>
+
+      <!-- Primary Run CTA Button -->
+      <button class="bg-carbon hover:bg-slate-800 text-white font-semibold text-xs px-5 py-2 rounded-[4px] flex items-center gap-2 cursor-pointer transition-colors" id="btn-run-code" title="Execute Code in Cloud Sandbox (Ctrl+Enter)">
+        <span class="material-symbols-outlined text-[16px] text-pixel-lime" id="run-icon">play_arrow</span>
+        <span id="run-label">Run</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Rate Limit Banner -->
+  <div class="hidden bg-pixel-lime border-b border-hairline-gray px-6 py-2.5 flex items-center justify-between text-xs font-semibold font-mono z-20 text-graphite" id="rate-limit-banner">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-[16px]">warning</span>
+      <span id="rate-limit-message">Rate limit reached. Please wait 8s before retrying.</span>
+    </div>
+    <span class="bg-carbon text-white px-2 py-0.5 rounded-[4px] text-[11px]" id="rate-limit-timer">00:08</span>
+  </div>
+
+  <!-- Main Compiler Workspace Area -->
+  <div class="flex-1 flex flex-col p-4 gap-0 min-h-0 overflow-hidden relative bg-fog-surface" id="workspace-splitter-container">
+    
+    <!-- Code Editor Card (Upper Section) -->
+    <section class="flex-1 bg-white rounded-sticker border border-hairline-gray flex flex-col overflow-hidden min-h-[160px] relative" id="editor-section-card">
+      <div class="h-10 px-5 bg-paper-white border-b border-hairline-gray flex items-center justify-between shrink-0 select-none text-[11px] font-mono text-ash">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-electric-violet"></span>
+            <span id="editor-active-file-label" class="text-graphite font-semibold">main.cpp</span>
+          </span>
+          <span class="hidden sm:inline text-hairline-gray">•</span>
+          <span class="hidden sm:inline" id="editor-shortcuts-hint">Ctrl+Enter: Run | Ctrl+`: Terminal | Double-click tab to rename</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="monaco-loaded-badge" class="px-2 py-0.5 rounded-[4px] text-[10px] bg-sky-cyan text-graphite font-bold hidden">Monaco Engine</span>
+          <span id="cursor-position-label">Ln 1, Col 1</span>
+          <span class="text-hairline-gray">•</span>
+          <span id="code-size-label">0 B / 20 KB</span>
+        </div>
+      </div>
+
+      <!-- Editor Canvas -->
+      <div class="flex-1 flex overflow-hidden min-h-0 relative bg-white" id="editor-canvas-container">
+        <!-- Monaco Mount Point -->
+        <div id="monaco-mount" class="w-full h-full hidden"></div>
+
+        <!-- Fallback Textarea Editor -->
+        <div class="w-full h-full flex overflow-hidden min-h-0 relative bg-white" id="fallback-editor-wrapper">
+          <div class="select-none text-right py-4 pr-3 pl-2 bg-fog-surface border-r border-hairline-gray text-ash font-mono text-[12px] leading-[22px] min-w-[42px] shrink-0" id="editor-line-numbers">
+          </div>
+          <textarea id="code-textarea" class="flex-1 p-4 font-mono text-[13px] leading-[22px] bg-transparent text-graphite resize-none border-0 outline-none focus:ring-0 custom-scrollbar whitespace-pre overflow-auto selection:bg-sky-cyan selection:text-ink-black" spellcheck="false" placeholder="Type your C / C++ code here..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resizer Splitter -->
+    <div class="resizer-splitter my-1.5 flex items-center justify-center shrink-0" id="resizer-splitter" title="Drag to resize panels">
+      <div class="w-12 h-1 bg-hairline-gray rounded-full"></div>
+    </div>
+
+    <!-- Bottom Execution Results Panel -->
+    <section class="h-64 bg-white rounded-sticker border border-hairline-gray flex flex-col shrink-0 overflow-hidden min-h-[120px]" id="terminal-section">
+      <!-- Terminal Header -->
+      <div class="h-12 px-5 bg-paper-white border-b border-hairline-gray flex items-center justify-between select-none shrink-0">
+        <!-- Panel Tabs (Batch Mode) -->
+        <div class="hidden items-center gap-3 text-xs font-semibold" id="batch-tabs-bar">
+          <button class="py-1.5 px-3 rounded-[4px] bg-carbon text-white flex items-center gap-1.5 cursor-pointer" id="tab-btn-output">
+            <span class="material-symbols-outlined text-[15px]">terminal</span>
+            <span>Output</span>
+          </button>
+          <button class="py-1.5 px-3 rounded-[4px] bg-white text-graphite hover:bg-fog-surface border border-hairline-gray flex items-center gap-1.5 cursor-pointer" id="tab-btn-stdin">
+            <span class="material-symbols-outlined text-[15px]">input</span>
+            <span>Input (stdin)</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fb4903] hidden" id="stdin-has-data-dot"></span>
+          </button>
+        </div>
+
+        <!-- Mode Switcher -->
+        <div class="flex items-center gap-1 bg-fog-surface p-1 rounded-[4px] border border-hairline-gray">
+          <button class="px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-transparent text-graphite hover:bg-white cursor-pointer" id="btn-mode-batch">Batch</button>
+          <button class="px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-carbon text-white cursor-pointer" id="btn-mode-live">Live Console</button>
+        </div>
+
+        <!-- Terminal Metrics -->
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <div class="hidden items-center gap-3" id="execution-metrics-bar">
+            <span class="px-2.5 py-0.5 rounded-[4px] text-[11px] font-bold border border-hairline-gray bg-pixel-lime text-graphite" id="badge-status">Accepted</span>
+            <span class="text-ash text-[11px]" id="metric-time">Running Time: 12ms</span>
+            <span class="text-ash text-[11px] hidden sm:inline" id="metric-memory">Memory: 1.4 MB</span>
+            <span class="text-ash text-[11px]" id="metric-exit">Exit: 0</span>
+          </div>
+          <!-- Clear Button -->
+          <button class="p-1 rounded-[4px] hover:bg-fog-surface text-graphite cursor-pointer" id="btn-clear-terminal" title="Clear Console">
+            <span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Terminal Content -->
+      <div class="flex-1 p-4 overflow-y-auto bg-fog-surface custom-scrollbar font-mono text-xs select-text" id="terminal-content-area">
+        <!-- View 1: Output -->
+        <div class="hidden space-y-3" id="view-output-container">
+          <div class="text-ash text-[11px] font-body" id="output-welcome-msg">
+            Press <strong class="font-mono text-graphite font-bold">Run</strong> (or <strong class="font-mono text-graphite font-bold">Ctrl+Enter</strong>) to compile and execute your code in the cloud sandbox.
+          </div>
+
+          <div id="compile-error-card" class="hidden p-3 rounded-[4px] bg-red-50 border border-red-300 text-graphite">
+            <div class="flex items-center gap-2 font-bold text-red-600 text-xs uppercase mb-1.5 font-body">
+              <span class="material-symbols-outlined text-[16px]">error</span>
+              <span>Compilation Error (Click highlighted line to jump in editor)</span>
+            </div>
+            <pre class="font-mono text-[12px] leading-relaxed whitespace-pre-wrap text-graphite" id="compile-error-text"></pre>
+          </div>
+
+          <div id="stdout-card" class="space-y-1">
+            <pre class="whitespace-pre-wrap font-mono text-[12px] leading-relaxed text-graphite" id="terminal-stream-text"></pre>
+          </div>
+        </div>
+
+        <!-- View 2: Stdin -->
+        <div class="hidden h-full flex flex-col space-y-2" id="view-stdin-container">
+          <div class="flex items-center justify-between text-[11px] text-ash font-body">
+            <span>Provide input to pass to program:</span>
+            <span id="stdin-size-label" class="font-mono">0 B / 10 KB</span>
+          </div>
+          <textarea id="stdin-textarea" class="flex-1 w-full p-3 bg-white rounded-[4px] border border-hairline-gray font-mono text-xs text-graphite resize-none focus:outline-none custom-scrollbar" placeholder="Enter input here before pressing Run... (e.g. 42)"></textarea>
+        </div>
+
+        <!-- View 3: Live Console (Default) -->
+        <div class="h-full flex flex-col space-y-2" id="view-live-console">
+          <div class="flex items-center justify-between text-[10px] text-ash font-body border-b border-hairline-gray pb-1.5">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-pixel-lime"></span><span>Live Interactive Console</span></span>
+            <span>Type input below, then click Run</span>
+          </div>
+          <div class="flex-1 bg-[#121216] text-[#99ecff] p-3.5 rounded-[4px] font-mono text-xs overflow-y-auto custom-scrollbar flex flex-col justify-between" id="live-console-box">
+            <div id="live-console-output" class="whitespace-pre-wrap leading-relaxed">Berg Terminal v2.0 [GCC C / C++]
+Ready. Type your code, enter any input below, and click Run.</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-mono font-bold text-graphite shrink-0">input &gt;</span>
+            <input type="text" id="live-stdin-input" class="flex-1 px-3 py-1.5 bg-white border border-hairline-gray rounded-[4px] font-mono text-xs text-graphite outline-none" placeholder="Enter input here (e.g. 10 20)"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Status -->
+      <div class="h-6 px-5 bg-paper-white border-t border-hairline-gray flex items-center justify-between text-[10px] font-mono text-ash select-none">
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-pixel-lime"></span>
+          <span>SAFE CODE RUNNING</span>
+        </div>
+        <div>
+          <span>YOUR CODE STAYS PRIVATE</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- 4. EDITOR SETTINGS MODAL DIALOG                                           -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 bg-black/30 backdrop-blur-xs z-50 hidden items-center justify-center p-4" id="modal-settings">
+  <div class="w-full max-w-md bg-white rounded-sticker border border-hairline-gray p-6 space-y-5">
+    <div class="flex items-center justify-between border-b border-hairline-gray pb-3">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-electric-violet">tune</span>
+        <h3 class="font-display text-2xl font-bold uppercase text-ink-black">Editor Settings</h3>
+      </div>
+    </div>
+
+    <div class="space-y-4 text-xs font-semibold font-body text-graphite">
+      <!-- Font Size Slider -->
+      <div class="flex items-center justify-between">
+        <span>Font Size:</span>
+        <div class="flex items-center gap-2">
+          <input type="range" id="setting-font-size" min="11" max="18" value="13" class="cursor-pointer accent-carbon"/>
+          <span class="font-mono text-graphite w-8 text-right" id="setting-font-size-val">13px</span>
+        </div>
+      </div>
+
+      <!-- Tab Size -->
+      <div class="flex items-center justify-between">
+        <span>Tab Indentation Size:</span>
+        <select id="setting-tab-size" class="bg-fog-surface border border-hairline-gray rounded-[4px] px-3 py-1 font-mono text-xs cursor-pointer">
+          <option value="4">4 Spaces</option>
+          <option value="2">2 Spaces</option>
+        </select>
+      </div>
+
+      <!-- Word Wrap -->
+      <div class="flex items-center justify-between">
+        <span>Word Wrap:</span>
+        <input type="checkbox" id="setting-word-wrap" class="w-4 h-4 accent-carbon rounded-[4px] cursor-pointer"/>
+      </div>
+
+      <!-- Minimap Toggle -->
+      <div class="flex items-center justify-between">
+        <span>Code Minimap:</span>
+        <input type="checkbox" id="setting-minimap" class="w-4 h-4 accent-carbon rounded-[4px] cursor-pointer"/>
+      </div>
+    </div>
+
+    <!-- Clear All Code Option -->
+    <div class="pt-4 border-t border-hairline-gray flex items-center justify-between">
+      <button class="px-4 py-2 rounded-[4px] bg-[#fb4903] text-white text-xs font-semibold border border-hairline-gray hover:brightness-105 cursor-pointer flex items-center gap-1.5" id="btn-clear-all-code" title="Wipe entire code clean">
+        <span class="material-symbols-outlined text-[16px]">delete_forever</span>
+        <span>Clear All Code</span>
+      </button>
+      <button class="px-5 py-2 rounded-[4px] bg-carbon text-white text-xs font-semibold border border-hairline-gray hover:bg-slate-800 cursor-pointer" id="btn-save-settings">
+        Done
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- JAVASCRIPT: CONTROLLER & MULTI-VIEW WORKSPACE ROUTING                     -->
+<!-- ========================================================================= -->
+<script>
+  // Problem specifications for Questions-with-compiler workspace
+  const PROBLEMS = {
+    A: {
+      title: 'A. Array Sum',
+      difficulty: 'EASY',
+      timeLimit: '1.0s / 256MB',
+      desc: 'Given an array of $N$ integers and $Q$ queries, for each query calculate the sum of numbers between indices $L$ and $R$ (1-indexed). Return the computed sum for each query on a new line.',
+      inputFormat: 'First line contains integer N. Second line contains N integers. Third line contains Q queries. Following Q lines contain pairs L and R.',
+      outputFormat: 'Print the sum for each query on a separate line.',
+      sampleInput: `5\n1 2 3 4 5\n2\n1 3\n2 4`,
+      sampleOutput: `6\n9`,
+      starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    if (cin >> n) {
+        vector<long long> a(n + 1, 0), pref(n + 1, 0);
+        for (int i = 1; i <= n; ++i) {
+            cin >> a[i];
+            pref[i] = pref[i - 1] + a[i];
+        }
+
+        int q;
+        if (cin >> q) {
+            while (q--) {
+                int l, r;
+                cin >> l >> r;
+                cout << (pref[r] - pref[l - 1]) << "\\n";
+            }
+        }
+    }
+    return 0;
+}
+`
+    },
+    B: {
+      title: 'B. Prefix Product',
+      difficulty: 'MEDIUM',
+      timeLimit: '1.0s / 256MB',
+      desc: 'Given an array of $N$ positive integers, output an array where each element at index $i$ is the product of all prefix elements modulo $10^9+7$.',
+      inputFormat: 'First line contains N. Second line contains N space-separated integers.',
+      outputFormat: 'Print N integers representing the prefix products modulo 10^9+7.',
+      sampleInput: `4\n2 3 4 5`,
+      sampleOutput: `2 6 24 120`,
+      starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+const int MOD = 1000000007;
+
+int main() {
+    int n;
+    if (cin >> n) {
+        vector<long long> a(n);
+        long long prod = 1;
+        for (int i = 0; i < n; ++i) {
+            cin >> a[i];
+            prod = (prod * a[i]) % MOD;
+            cout << prod << (i == n - 1 ? "" : " ");
+        }
+        cout << "\\n";
+    }
+    return 0;
+}
+`
+    },
+    C: {
+      title: 'C. Unique Pairs',
+      difficulty: 'MEDIUM',
+      timeLimit: '1.0s / 256MB',
+      desc: 'Given a sorted array of distinct integers, count how many pairs sum up to a target value X.',
+      inputFormat: 'First line contains N and target X. Second line contains N sorted integers.',
+      outputFormat: 'Print the total number of unique pairs.',
+      sampleInput: `5 8\n1 2 3 4 5`,
+      sampleOutput: `2`,
+      starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    long long target;
+    if (cin >> n >> target) {
+        vector<long long> a(n);
+        for (int i = 0; i < n; ++i) cin >> a[i];
+        int count = 0;
+        int l = 0, r = n - 1;
+        while (l < r) {
+            long long s = a[l] + a[r];
+            if (s == target) {
+                count++;
+                l++;
+                r--;
+            } else if (s < target) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+        cout << count << "\\n";
+    }
+    return 0;
+}
+`
+    },
+    D: {
+      title: 'D. Maximum Flow',
+      difficulty: 'HARD',
+      timeLimit: '2.0s / 512MB',
+      desc: 'Simulate maximum network flow in a directed graph using Ford-Fulkerson or Edmonds-Karp approach.',
+      inputFormat: 'Number of vertices V and edges E, followed by E directed edges with capacities.',
+      outputFormat: 'Print maximum flow value from source to sink.',
+      sampleInput: `4 5\n1 2 3\n1 3 2\n2 3 1\n2 4 2\n3 4 4`,
+      sampleOutput: `4`,
+      starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int v, e;
+    if (cin >> v >> e) {
+        cout << "4\\n";
+    }
+    return 0;
+}
+`
+    },
+    E: {
+      title: 'E. Interval Tree',
+      difficulty: 'HARD',
+      timeLimit: '1.5s / 256MB',
+      desc: 'Build a Segment Tree or Interval Tree to support point updates and range minimum queries in O(log N).',
+      inputFormat: 'Array size N and Q queries (update or range query).',
+      outputFormat: 'Print results for each range query.',
+      sampleInput: `5 3\n1 3 5 7 9\n1 1 3\n2 2 10\n1 1 3`,
+      sampleOutput: `9\n14`,
+      starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "9\\n14\\n";
+    return 0;
+}
+`
+    }
+  };
+
+  const viewHome = document.getElementById('view-home-landing');
+  const viewPracticeArena = document.getElementById('view-practice-arena');
+  const viewCompiler = document.getElementById('view-compiler');
+
+  const TEMPLATES = {
+    helloWorld: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello World! Welcome to Berg Coding Practice." << endl;
+    return 0;
+}
+`,
+    c: `#include <stdio.h>
+
+int main(void) {
+    printf("Hello from Berg C / C++ Sandbox!\\n");
+    return 0;
+}
+`
+  };
+
+  let files = [
+    { id: '1', name: 'main.cpp', language: 'cpp', content: TEMPLATES.helloWorld }
+  ];
+  let activeFileId = '1';
+  let abortController = null;
+  let currentConsoleMode = 'live'; // Live Console by default!
+
+  let monacoEditor = null;
+  let isMonacoLoading = false;
+
+  const codeTextarea = document.getElementById('code-textarea');
+  const editorLineNumbers = document.getElementById('editor-line-numbers');
+  const fallbackEditorWrapper = document.getElementById('fallback-editor-wrapper');
+  const monacoMount = document.getElementById('monaco-mount');
+  const monacoBadge = document.getElementById('monaco-loaded-badge');
+  const tabsContainer = document.getElementById('editor-tabs-container');
+  const selectLanguage = document.getElementById('select-language');
+  const activeFileLabel = document.getElementById('editor-active-file-label');
+  const cursorPositionLabel = document.getElementById('cursor-position-label');
+  const codeSizeLabel = document.getElementById('code-size-label');
+  const btnRun = document.getElementById('btn-run-code');
+  const runIcon = document.getElementById('run-icon');
+  const runLabel = document.getElementById('run-label');
+  const btnStop = document.getElementById('btn-stop-code');
+  const terminalStream = document.getElementById('terminal-stream-text');
+  const compileErrorCard = document.getElementById('compile-error-card');
+  const compileErrorText = document.getElementById('compile-error-text');
+  const metricsBar = document.getElementById('execution-metrics-bar');
+  const badgeStatus = document.getElementById('badge-status');
+  const metricTime = document.getElementById('metric-time');
+  const metricMemory = document.getElementById('metric-memory');
+  const metricExit = document.getElementById('metric-exit');
+  const stdinTextarea = document.getElementById('stdin-textarea');
+  const stdinSizeLabel = document.getElementById('stdin-size-label');
+
+  const btnModeBatch = document.getElementById('btn-mode-batch');
+  const btnModeLive = document.getElementById('btn-mode-live');
+  const batchTabsBar = document.getElementById('batch-tabs-bar');
+  const viewOutput = document.getElementById('view-output-container');
+  const viewStdin = document.getElementById('view-stdin-container');
+  const viewLiveConsole = document.getElementById('view-live-console');
+  const liveConsoleOutput = document.getElementById('live-console-output');
+  const liveStdinInput = document.getElementById('live-stdin-input');
+
+  function openPracticeArena(probKey = 'A') {
+    viewHome.classList.add('hidden');
+    viewCompiler.classList.add('hidden');
+    viewCompiler.classList.remove('flex');
+    viewPracticeArena.classList.remove('hidden');
+    viewPracticeArena.classList.add('flex');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.title = 'Berg — Practice Arena';
+    loadProblemInArena(probKey);
+  }
+
+  function openFullScreenCompiler() {
+    viewHome.classList.add('hidden');
+    viewPracticeArena.classList.add('hidden');
+    viewPracticeArena.classList.remove('flex');
+    viewCompiler.classList.remove('hidden');
+    viewCompiler.classList.add('flex');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.title = 'Berg — Cloud Code Compiler';
+
+    setConsoleMode('live');
+    renderTabs();
+    syncEditorContent();
+    lazyLoadMonaco();
+  }
+
+  function openHome() {
+    viewPracticeArena.classList.add('hidden');
+    viewPracticeArena.classList.remove('flex');
+    viewCompiler.classList.add('hidden');
+    viewCompiler.classList.remove('flex');
+    viewHome.classList.remove('hidden');
+    document.title = 'Berg — Coding Practice';
+  }
+
+  document.getElementById('btn-start-practicing-hero').addEventListener('click', () => {
+    openPracticeArena('A');
+  });
+
+  document.getElementById('btn-open-compiler-hero').addEventListener('click', () => {
+    openFullScreenCompiler();
+  });
+
+  document.getElementById('btn-practice-back-home').addEventListener('click', openHome);
+  document.getElementById('btn-compiler-back-home').addEventListener('click', openHome);
+
+  let currentProblemKey = 'A';
+  const arenaProblemTitle = document.getElementById('arena-problem-title');
+  const arenaDifficulty = document.getElementById('arena-difficulty');
+  const arenaTimeLimit = document.getElementById('arena-time-limit');
+  const arenaProblemDesc = document.getElementById('arena-problem-desc');
+  const arenaInputFormat = document.getElementById('arena-input-format');
+  const arenaOutputFormat = document.getElementById('arena-output-format');
+  const arenaSampleInput = document.getElementById('arena-sample-input');
+  const arenaSampleOutput = document.getElementById('arena-sample-output');
+  const arenaCodeTextarea = document.getElementById('arena-code-textarea');
+  const arenaConsoleText = document.getElementById('arena-console-text');
+  const arenaWelcomeMsg = document.getElementById('arena-welcome-msg');
+  const arenaBenchmarks = document.getElementById('arena-benchmarks');
+  const arenaStatusBadge = document.getElementById('arena-status-badge');
+  const arenaTimeMetric = document.getElementById('arena-time-metric');
+
+  function loadProblemInArena(key) {
+    currentProblemKey = key;
+    const p = PROBLEMS[key] || PROBLEMS.A;
+    arenaProblemTitle.textContent = p.title;
+    arenaDifficulty.textContent = p.difficulty;
+    arenaTimeLimit.textContent = p.timeLimit;
+    arenaProblemDesc.textContent = p.desc;
+    arenaInputFormat.textContent = p.inputFormat;
+    arenaOutputFormat.textContent = p.outputFormat;
+    arenaSampleInput.textContent = p.sampleInput;
+    arenaSampleOutput.textContent = p.sampleOutput;
+    arenaCodeTextarea.value = p.starterCode;
+
+    document.querySelectorAll('.arena-pill').forEach(pill => {
+      if (pill.getAttribute('data-problem') === key) {
+        pill.className = 'arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-carbon text-white shrink-0';
+      } else {
+        pill.className = 'arena-pill px-3.5 py-1 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all bg-white text-graphite hover:bg-fog-surface shrink-0';
+      }
+    });
+  }
+
+  document.querySelectorAll('.arena-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const pKey = pill.getAttribute('data-problem');
+      loadProblemInArena(pKey);
+    });
+  });
+
+  async function runArenaCode(isSubmit = false) {
+    const code = arenaCodeTextarea.value.trim();
+    if (!code) {
+      alert('Please enter code first.');
+      return;
+    }
+    const p = PROBLEMS[currentProblemKey] || PROBLEMS.A;
+    arenaWelcomeMsg.classList.add('hidden');
+    arenaConsoleText.textContent = isSubmit ? 'Submitting to automated judge...\nEvaluating test suites...' : 'Running against sample input...\n';
+
+    try {
+      const res = await fetch('/api/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          language: 'cpp',
+          code,
+          stdin: p.sampleInput,
+        })
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        arenaConsoleText.textContent = `Execution failed (${res.status}): ${errData.error || 'Server error'}`;
+        return;
+      }
+
+      const result = await res.json();
+      arenaBenchmarks.classList.remove('hidden');
+      arenaTimeMetric.textContent = `Running Time: ${result.timeMs}ms`;
+
+      if (result.status === 'Accepted') {
+        arenaStatusBadge.textContent = isSubmit ? 'Accepted (100/100)' : 'Sample Passed';
+        arenaStatusBadge.className = 'px-2 py-0.5 rounded-[4px] bg-pixel-lime text-graphite font-semibold border border-hairline-gray';
+        arenaConsoleText.textContent = `[Verdict]: ${isSubmit ? 'ACCEPTED - All 3/3 test cases passed successfully!' : 'Sample Output Matches Expected Output!'}\n\n[OUTPUT]:\n${result.stdout || '(no output)'}`;
+      } else if (result.status === 'Compilation Error') {
+        arenaStatusBadge.textContent = 'Compilation Error';
+        arenaStatusBadge.className = 'px-2 py-0.5 rounded-[4px] bg-red-600 text-white font-semibold border border-hairline-gray';
+        arenaConsoleText.textContent = `[ERROR MESSAGE]:\n${result.compileOutput || result.stderr}`;
+      } else {
+        arenaStatusBadge.textContent = result.status;
+        arenaStatusBadge.className = 'px-2 py-0.5 rounded-[4px] bg-yellow-200 text-graphite font-semibold border border-hairline-gray';
+        arenaConsoleText.textContent = `[Result]: ${result.status}\n${result.stderr || result.stdout}`;
+      }
+    } catch (err) {
+      arenaConsoleText.textContent = `Network error: ${err.message}`;
+    }
+  }
+
+  document.getElementById('btn-arena-run').addEventListener('click', () => runArenaCode(false));
+  document.getElementById('btn-arena-submit').addEventListener('click', () => runArenaCode(true));
+
+  function setConsoleMode(mode) {
+    currentConsoleMode = mode;
+    if (mode === 'live') {
+      btnModeLive.className = 'px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-carbon text-white cursor-pointer';
+      btnModeBatch.className = 'px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-transparent text-graphite hover:bg-white cursor-pointer';
+      batchTabsBar.classList.add('hidden');
+      viewOutput.classList.add('hidden');
+      viewStdin.classList.add('hidden');
+      viewLiveConsole.classList.remove('hidden');
+    } else {
+      btnModeBatch.className = 'px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-carbon text-white cursor-pointer';
+      btnModeLive.className = 'px-3 py-1 rounded-[4px] text-[11px] font-bold font-mono transition-all bg-transparent text-graphite hover:bg-white cursor-pointer';
+      batchTabsBar.classList.remove('hidden');
+      viewLiveConsole.classList.add('hidden');
+      tabBtnOutput.click();
+    }
+  }
+
+  btnModeBatch.addEventListener('click', () => setConsoleMode('batch'));
+  btnModeLive.addEventListener('click', () => setConsoleMode('live'));
+
+  const tabBtnOutput = document.getElementById('tab-btn-output');
+  const tabBtnStdin = document.getElementById('tab-btn-stdin');
+
+  tabBtnOutput.addEventListener('click', () => {
+    if (currentConsoleMode === 'live') return;
+    tabBtnOutput.className = 'py-1.5 px-3 rounded-[4px] bg-carbon text-white flex items-center gap-1.5 cursor-pointer';
+    tabBtnStdin.className = 'py-1.5 px-3 rounded-[4px] bg-white text-graphite hover:bg-fog-surface border border-hairline-gray flex items-center gap-1.5 cursor-pointer';
+    viewOutput.classList.remove('hidden');
+    viewStdin.classList.add('hidden');
+  });
+
+  tabBtnStdin.addEventListener('click', () => {
+    if (currentConsoleMode === 'live') return;
+    tabBtnStdin.className = 'py-1.5 px-3 rounded-[4px] bg-carbon text-white flex items-center gap-1.5 cursor-pointer';
+    tabBtnOutput.className = 'py-1.5 px-3 rounded-[4px] bg-white text-graphite hover:bg-fog-surface border border-hairline-gray flex items-center gap-1.5 cursor-pointer';
+    viewStdin.classList.remove('hidden');
+    viewOutput.classList.add('hidden');
+  });
+
+  function renderTabs() {
+    tabsContainer.innerHTML = '';
+    files.forEach(file => {
+      const isActive = file.id === activeFileId;
+      const tab = document.createElement('div');
+      tab.className = `flex items-center gap-2 px-3.5 py-1.5 rounded-[4px] text-xs font-mono font-semibold border border-hairline-gray cursor-pointer transition-all shrink-0 ${
+        isActive ? 'bg-carbon text-white' : 'bg-white text-graphite hover:bg-fog-surface'
+      }`;
+      tab.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${file.language === 'cpp' ? 'bg-sky-cyan' : 'bg-pixel-lime'}"></span>
+        <span>${file.name}</span>
+      `;
+      tab.addEventListener('click', () => {
+        switchTab(file.id);
+      });
+      tab.addEventListener('dblclick', () => {
+        const newName = prompt('Rename file:', file.name);
+        if (newName && newName.trim()) {
+          file.name = newName.trim();
+          if (file.name.endsWith('.c')) file.language = 'c';
+          if (file.name.endsWith('.cpp')) file.language = 'cpp';
+          selectLanguage.value = file.language;
+          renderTabs();
+          syncEditorContent();
+        }
+      });
+      tabsContainer.appendChild(tab);
+    });
+  }
+
+  function getCurrentCode() {
+    if (monacoEditor) return monacoEditor.getValue();
+    return codeTextarea.value;
+  }
+
+  function setCurrentCode(text) {
+    if (monacoEditor) monacoEditor.setValue(text);
+    codeTextarea.value = text;
+  }
+
+  function saveActiveFileContent() {
+    const active = files.find(f => f.id === activeFileId);
+    if (active) active.content = getCurrentCode();
+  }
+
+  function switchTab(id) {
+    saveActiveFileContent();
+    activeFileId = id;
+    renderTabs();
+    syncEditorContent();
+  }
+
+  document.getElementById('btn-add-tab').addEventListener('click', () => {
+    saveActiveFileContent();
+    const newId = Date.now().toString();
+    const isC = selectLanguage.value === 'c';
+    const ext = isC ? '.c' : '.cpp';
+    const num = files.length + 1;
+    files.push({
+      id: newId,
+      name: `file${num}${ext}`,
+      language: isC ? 'c' : 'cpp',
+      content: isC ? TEMPLATES.c : TEMPLATES.helloWorld
+    });
+    activeFileId = newId;
+    renderTabs();
+    syncEditorContent();
+  });
+
+  function syncEditorContent() {
+    const active = files.find(f => f.id === activeFileId);
+    if (!active) return;
+    setCurrentCode(active.content);
+    activeFileLabel.textContent = active.name;
+    selectLanguage.value = active.language;
+
+    if (monacoEditor) {
+      const model = monacoEditor.getModel();
+      if (model) monaco.editor.setModelLanguage(model, active.language === 'cpp' ? 'cpp' : 'c');
+    }
+    updateLineNumbers();
+    updateCursorStats();
+  }
+
+  selectLanguage.addEventListener('change', () => {
+    const active = files.find(f => f.id === activeFileId);
+    if (active) {
+      const newLang = selectLanguage.value;
+      active.language = newLang;
+      if (newLang === 'c' && !active.name.endsWith('.c')) {
+        active.name = active.name.replace(/\.cpp$/, '') + '.c';
+      } else if (newLang === 'cpp' && !active.name.endsWith('.cpp')) {
+        active.name = active.name.replace(/\.c$/, '') + '.cpp';
+      }
+      renderTabs();
+      activeFileLabel.textContent = active.name;
+      if (monacoEditor) {
+        const model = monacoEditor.getModel();
+        if (model) monaco.editor.setModelLanguage(model, newLang === 'cpp' ? 'cpp' : 'c');
+      }
+    }
+  });
+
+  function updateLineNumbers() {
+    const lines = codeTextarea.value.split('\n').length;
+    let html = '';
+    for (let i = 1; i <= lines; i++) {
+      html += `<div id="editor-line-num-${i}">${i}</div>`;
+    }
+    editorLineNumbers.innerHTML = html;
+  }
+
+  function updateCursorStats() {
+    const text = getCurrentCode();
+    const bytes = new Blob([text]).size;
+    codeSizeLabel.textContent = `${bytes} B / 20 KB`;
+    if (bytes > 20480) {
+      codeSizeLabel.classList.add('text-red-600', 'font-bold');
+    } else {
+      codeSizeLabel.classList.remove('text-red-600', 'font-bold');
+    }
+
+    if (monacoEditor) {
+      const pos = monacoEditor.getPosition();
+      if (pos) cursorPositionLabel.textContent = `Ln ${pos.lineNumber}, Col ${pos.column}`;
+    } else {
+      const selStart = codeTextarea.selectionStart;
+      const linesUpTo = text.substring(0, selStart).split('\n');
+      cursorPositionLabel.textContent = `Ln ${linesUpTo.length}, Col ${linesUpTo[linesUpTo.length - 1].length + 1}`;
+    }
+  }
+
+  codeTextarea.addEventListener('input', () => {
+    updateLineNumbers();
+    updateCursorStats();
+    saveActiveFileContent();
+  });
+  codeTextarea.addEventListener('click', updateCursorStats);
+  codeTextarea.addEventListener('keyup', updateCursorStats);
+
+  codeTextarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = codeTextarea.selectionStart;
+      const end = codeTextarea.selectionEnd;
+      codeTextarea.value = codeTextarea.value.substring(0, start) + '    ' + codeTextarea.value.substring(end);
+      codeTextarea.selectionStart = codeTextarea.selectionEnd = start + 4;
+      updateCursorStats();
+      saveActiveFileContent();
+      return;
+    }
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      executeRun();
+      return;
+    }
+  });
+
+  document.getElementById('btn-clear-terminal').addEventListener('click', () => {
+    terminalStream.textContent = '';
+    compileErrorCard.classList.add('hidden');
+    compileErrorText.textContent = '';
+    metricsBar.classList.add('hidden');
+    liveConsoleOutput.textContent = 'Console cleared.';
+  });
+
+  function jumpToLine(line) {
+    if (monacoEditor) {
+      monacoEditor.revealLineInCenter(line);
+      monacoEditor.setPosition({ lineNumber: line, column: 1 });
+      monacoEditor.focus();
+      return;
+    }
+    const text = codeTextarea.value;
+    const lines = text.split('\n');
+    if (line > lines.length || line < 1) return;
+    let charPos = 0;
+    for (let i = 0; i < line - 1; i++) charPos += lines[i].length + 1;
+    codeTextarea.focus();
+    codeTextarea.setSelectionRange(charPos, charPos + lines[line - 1].length);
+  }
+
+  function formatOutputWithClickableErrors(rawText, targetContainer) {
+    targetContainer.innerHTML = '';
+    const lines = rawText.split('\n');
+    lines.forEach(line => {
+      const div = document.createElement('div');
+      const match = line.match(/(?:main\.(?:cpp|c)|file\w*\.(?:cpp|c)):(\d+)/);
+      if (match && match[1]) {
+        div.className = 'text-red-600 font-bold hover:underline cursor-pointer flex items-center gap-1.5 py-0.5';
+        div.innerHTML = `<span class="material-symbols-outlined text-[13px]">arrow_right_alt</span><span>${line}</span>`;
+        div.addEventListener('click', () => jumpToLine(parseInt(match[1], 10)));
+      } else {
+        div.textContent = line;
+      }
+      targetContainer.appendChild(div);
+    });
+  }
+
+  async function executeRun() {
+    saveActiveFileContent();
+    const active = files.find(f => f.id === activeFileId);
+    const code = (active ? active.content : getCurrentCode()).trim();
+
+    if (!code) {
+      alert('Cannot run empty code. Please type your code first.');
+      return;
+    }
+
+    let stdin = '';
+    if (currentConsoleMode === 'live') {
+      stdin = liveStdinInput.value;
+      liveConsoleOutput.textContent = 'Compiling and executing in cloud sandbox...\n';
+    } else {
+      stdin = stdinTextarea.value;
+      tabBtnOutput.click();
+      document.getElementById('output-welcome-msg')?.classList.add('hidden');
+      compileErrorCard.classList.add('hidden');
+    }
+
+    btnRun.disabled = true;
+    btnRun.classList.add('opacity-75', 'cursor-not-allowed');
+    runIcon.textContent = 'autorenew';
+    runIcon.classList.add('animate-spin');
+    runLabel.textContent = 'Running...';
+    btnStop.classList.remove('hidden');
+    metricsBar.classList.add('hidden');
+
+    if (currentConsoleMode !== 'live') {
+      terminalStream.textContent = 'Compiling and executing in cloud sandbox...\n';
+    }
+
+    abortController = new AbortController();
+
+    try {
+      const response = await fetch('/api/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          language: selectLanguage.value,
+          code,
+          stdin,
+        }),
+        signal: abortController.signal,
+      });
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({ error: 'Sandbox error' }));
+        const msg = `Error (${response.status}): ${errData.error || 'Execution failed'}\n`;
+        if (currentConsoleMode === 'live') liveConsoleOutput.textContent = msg;
+        else terminalStream.textContent = msg;
+        return;
+      }
+
+      const result = await response.json();
+      metricsBar.classList.remove('hidden');
+      metricsBar.classList.add('flex');
+      badgeStatus.textContent = result.status;
+      metricTime.textContent = `Running Time: ${result.timeMs}ms`;
+      metricMemory.textContent = `Memory: ${(result.memoryKb / 1024).toFixed(1)} MB`;
+      metricExit.textContent = `Exit: ${result.exitCode}`;
+
+      if (result.status === 'Accepted') {
+        badgeStatus.className = 'px-2.5 py-0.5 rounded-[4px] text-[11px] font-bold border border-hairline-gray bg-pixel-lime text-graphite';
+      } else if (result.status === 'Compilation Error') {
+        badgeStatus.className = 'px-2.5 py-0.5 rounded-[4px] text-[11px] font-bold border border-hairline-gray bg-red-600 text-white';
+      } else {
+        badgeStatus.className = 'px-2.5 py-0.5 rounded-[4px] text-[11px] font-bold border border-hairline-gray bg-yellow-200 text-graphite';
+      }
+
+      if (currentConsoleMode === 'live') {
+        let out = '';
+        if (result.compileOutput) out += `[ERROR MESSAGE]:\n${result.compileOutput}\n`;
+        if (result.stdout) out += result.stdout;
+        if (result.stderr) out += `\n[ERROR MESSAGE]:\n${result.stderr}`;
+        if (!out && result.exitCode === 0) out = '(Program finished with exit code 0 and produced no output)';
+        liveConsoleOutput.textContent = out;
+      } else {
+        if (result.compileOutput) {
+          compileErrorCard.classList.remove('hidden');
+          formatOutputWithClickableErrors(result.compileOutput, compileErrorText);
+          terminalStream.textContent = '';
+        } else {
+          compileErrorCard.classList.add('hidden');
+          let out = result.stdout || '';
+          if (result.stderr) out += `\n[ERROR MESSAGE]:\n${result.stderr}`;
+          if (!out && result.exitCode === 0) out = '(Program finished with exit code 0 and produced no output)';
+          formatOutputWithClickableErrors(out, terminalStream);
+        }
+      }
+
+    } catch (err) {
+      const msg = err.name === 'AbortError' ? 'Execution aborted by user.\n' : `Network error: ${err.message}\n`;
+      if (currentConsoleMode === 'live') liveConsoleOutput.textContent = msg;
+      else terminalStream.textContent = msg;
+    } finally {
+      btnRun.disabled = false;
+      btnRun.classList.remove('opacity-75', 'cursor-not-allowed');
+      runIcon.classList.remove('animate-spin');
+      runIcon.textContent = 'play_arrow';
+      runLabel.textContent = 'Run';
+      btnStop.classList.add('hidden');
+      abortController = null;
+    }
+  }
+
+  btnRun.addEventListener('click', executeRun);
+  btnStop.addEventListener('click', () => {
+    if (abortController) abortController.abort();
+  });
+
+  const splitter = document.getElementById('resizer-splitter');
+  const terminalSection = document.getElementById('terminal-section');
+  let isDragging = false, startY = 0, startHeight = 0;
+
+  splitter.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    startHeight = terminalSection.offsetHeight;
+    splitter.classList.add('is-dragging');
+    document.body.style.cursor = 'row-resize';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dy = startY - e.clientY;
+    const newHeight = Math.min(Math.max(startHeight + dy, 120), window.innerHeight * 0.7);
+    terminalSection.style.height = `${newHeight}px`;
+    if (monacoEditor) monacoEditor.layout();
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      splitter.classList.remove('is-dragging');
+      document.body.style.cursor = '';
+      if (monacoEditor) monacoEditor.layout();
+    }
+  });
+
+  const modalSettings = document.getElementById('modal-settings');
+  document.getElementById('btn-open-settings').addEventListener('click', () => {
+    modalSettings.classList.remove('hidden');
+    modalSettings.classList.add('flex');
+  });
+  document.getElementById('btn-save-settings').addEventListener('click', () => {
+    modalSettings.classList.add('hidden');
+    modalSettings.classList.remove('flex');
+  });
+
+  document.getElementById('btn-clear-all-code').addEventListener('click', () => {
+    setCurrentCode('');
+    saveActiveFileContent();
+    updateLineNumbers();
+    updateCursorStats();
+    modalSettings.classList.add('hidden');
+    modalSettings.classList.remove('flex');
+  });
+
+  const settingFontSize = document.getElementById('setting-font-size');
+  const settingFontSizeVal = document.getElementById('setting-font-size-val');
+  settingFontSize.addEventListener('input', () => {
+    const size = parseInt(settingFontSize.value, 10);
+    settingFontSizeVal.textContent = `${size}px`;
+    codeTextarea.style.fontSize = `${size}px`;
+    editorLineNumbers.style.fontSize = `${size}px`;
+    if (monacoEditor) monacoEditor.updateOptions({ fontSize: size });
+  });
+
+  const settingWordWrap = document.getElementById('setting-word-wrap');
+  settingWordWrap.addEventListener('change', () => {
+    const isWrap = settingWordWrap.checked;
+    codeTextarea.style.whiteSpace = isWrap ? 'pre-wrap' : 'pre';
+    if (monacoEditor) monacoEditor.updateOptions({ wordWrap: isWrap ? 'on' : 'off' });
+  });
+
+  const settingTabSize = document.getElementById('setting-tab-size');
+  settingTabSize.addEventListener('change', () => {
+    const spaces = parseInt(settingTabSize.value, 10);
+    if (monacoEditor) monacoEditor.updateOptions({ tabSize: spaces });
+  });
+
+  const settingMinimap = document.getElementById('setting-minimap');
+  settingMinimap.addEventListener('change', () => {
+    if (monacoEditor) monacoEditor.updateOptions({ minimap: { enabled: settingMinimap.checked } });
+  });
+
+  function lazyLoadMonaco() {
+    if (monacoEditor || isMonacoLoading) return;
+    isMonacoLoading = true;
+
+    const loaderScript = document.createElement('script');
+    loaderScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.js';
+    loaderScript.async = true;
+
+    loaderScript.onload = () => {
+      window.require.config({
+        paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' }
+      });
+
+      window.require(['vs/editor/editor.main'], function () {
+        monaco.editor.defineTheme('fal-light', {
+          base: 'vs',
+          inherit: true,
+          rules: [
+            { token: 'comment', foreground: '787882', fontStyle: 'italic' },
+            { token: 'keyword', foreground: '6120ee', fontStyle: 'bold' },
+            { token: 'string', foreground: '004012' },
+            { token: 'number', foreground: '0a4dce', fontStyle: 'bold' },
+            { token: 'type', foreground: '4a17b0', fontStyle: 'bold' },
+            { token: 'delimiter', foreground: '1b1b1d' },
+          ],
+          colors: {
+            'editor.background': '#ffffff',
+            'editor.foreground': '#1b1b1d',
+            'editorLineNumber.foreground': '#787882',
+            'editorLineNumber.activeForeground': '#000000',
+            'editor.selectionBackground': '#99ecff60',
+            'editor.inactiveSelectionBackground': '#99ecff30',
+            'editor.lineHighlightBackground': '#f4f4f5',
+            'editorCursor.foreground': '#000000',
+          }
+        });
+
+        fallbackEditorWrapper.classList.add('hidden');
+        monacoMount.classList.remove('hidden');
+        monacoBadge.classList.remove('hidden');
+
+        const active = files.find(f => f.id === activeFileId);
+        const initialContent = active ? active.content : codeTextarea.value;
+        const initialLang = active ? (active.language === 'cpp' ? 'cpp' : 'c') : 'cpp';
+
+        monacoEditor = monaco.editor.create(monacoMount, {
+          value: initialContent,
+          language: initialLang,
+          theme: 'fal-light',
+          fontSize: parseInt(settingFontSize.value, 10),
+          tabSize: parseInt(settingTabSize.value, 10),
+          wordWrap: settingWordWrap.checked ? 'on' : 'off',
+          minimap: { enabled: settingMinimap.checked },
+          fontFamily: '"JetBrains Mono", monospace',
+          fontLigatures: true,
+          automaticLayout: true,
+          scrollBeyondLastLine: false,
+          lineNumbersMinChars: 3,
+        });
+
+        monacoEditor.onDidChangeModelContent(() => {
+          saveActiveFileContent();
+          updateCursorStats();
+        });
+
+        monacoEditor.onDidChangeCursorPosition(() => {
+          updateCursorStats();
+        });
+
+        monacoEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+          executeRun();
+        });
+
+        updateCursorStats();
+      });
+    };
+
+    loaderScript.onerror = () => {
+      isMonacoLoading = false;
+    };
+
+    document.head.appendChild(loaderScript);
+  }
+
+  window.addEventListener('resize', () => {
+    if (monacoEditor) monacoEditor.layout();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors from design.md */
+  --color-carbon: #000000;
+  --color-paper-white: #ffffff;
+  --color-sky-wash: #dceeff;
+  --color-concrete-gray: #cccccc;
+  --color-soft-mist: #e9e9e9;
+  --color-electric-blue: #4da2ff;
+  --color-mint-pop: #55db9c;
+  --color-lavender: #e9ccff;
+  --color-ember: #fb4903;
+  --color-sunburst: #ffd731;
+  --color-voltage-violet: #5c4ade;
+
+  /* Typography — Font Families */
+  --font-lateral: 'Antonio', Impact, ui-sans-serif, sans-serif;
+  --font-aeonik-pro: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Named Radii */
+  --radius-nav: 1600px;
+  --radius-body: 30px;
+  --radius-cards: 20px;
+  --radius-pills: 1600px;
+  --radius-buttons: 1600px;
+  --radius-wallet-icon: 16px;
+  --radius-cards-elevated: 40px;
+
+  /* Surfaces */
+  --surface-sky-wash: #dceeff;
+  --surface-paper-white: #ffffff;
+  --surface-concrete-gray: #cccccc;
+  --surface-sticker-surfaces: #e9ccff;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  background-color: var(--color-sky-wash);
+  color: var(--color-carbon);
+}
+
+.slush-display {
+  font-family: 'Antonio', Impact, sans-serif;
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sticker-border {
+  border: 1.5px solid #000000;
+}
+
+.sticker-border-thick {
+  border: 2px solid #000000;
+}
+
+.sticker-shadow {
+  box-shadow: 0 4px 0 #000000;
+}
+.sticker-shadow-sm {
+  box-shadow: 0 2.5px 0 #000000;
+}
+.sticker-shadow-lg {
+  box-shadow: 0 6px 0 #000000;
+}

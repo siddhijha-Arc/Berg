@@ -1,0 +1,8 @@
+{
+  "name": "Remix Berg — Coding Practice",
+  "description": "Daily coding practice platform with beginner-friendly problems, online compiler, and curated logic challenges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
