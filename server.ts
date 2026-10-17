@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { createServer as createViteServer } from 'vite';
+import path from 'path';
 import { z } from 'zod';
 import { runCode } from './server/executor.ts';
 
@@ -136,13 +136,22 @@ app.post('/api/run', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-// Mount Vite middleware in development
+// Mount Vite middleware in development or static dist in production
 async function startServer() {
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: 'spa',
-  });
-  app.use(vite.middlewares);
+  if (process.env.NODE_ENV === 'production') {
+    const distPath = path.join(process.cwd(), 'dist');
+    app.use(express.static(distPath));
+    app.get('*', (req: Request, res: Response) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  } else {
+    const { createServer: createViteServer } = await import('vite');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  }
 
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`Berg Cloud Compiler server running on http://0.0.0.0:${PORT}`);
