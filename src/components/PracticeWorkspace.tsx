@@ -413,7 +413,6 @@ export function PracticeWorkspace({ onExit }: { onExit?: () => void }) {
   const [isSepiaTheme, setIsSepiaTheme] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'results' | 'console'>('results');
-  const [mobileTab, setMobileTab] = useState<'problem' | 'editor'>('problem');
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
   const [loaderMessage, setLoaderMessage] = useState<string>('Compiling and running against 3 test cases...');
   const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
@@ -546,47 +545,11 @@ export function PracticeWorkspace({ onExit }: { onExit?: () => void }) {
       )}
       {/* END: WindowTitleBar */}
 
-      {/* MOBILE ADAPTIVE VIEW TOGGLE (Shown only on screens < lg) */}
-      {!isFullscreen && (
-        <div className="lg:hidden flex items-center justify-between px-3 py-1.5 bg-[#faebd7]/80 border-b border-stone-200 text-xs font-mono shrink-0">
-          <div className="flex items-center gap-1 p-0.5 bg-stone-200/60 rounded-lg">
-            <button
-              onClick={() => setMobileTab('problem')}
-              className={`px-3 py-1 rounded-md transition-all flex items-center gap-1.5 font-medium ${
-                mobileTab === 'problem'
-                  ? 'bg-white text-stone-900 shadow-xs font-semibold'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[14px]">description</span>
-              <span>Problem</span>
-            </button>
-            <button
-              onClick={() => setMobileTab('editor')}
-              className={`px-3 py-1 rounded-md transition-all flex items-center gap-1.5 font-medium ${
-                mobileTab === 'editor'
-                  ? 'bg-white text-stone-900 shadow-xs font-semibold'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[14px]">terminal</span>
-              <span>Code & IDE</span>
-            </button>
-          </div>
-          <span className="text-[11px] font-mono text-stone-700 font-semibold bg-stone-200/70 px-2 py-0.5 rounded">
-            {prob.points}
-          </span>
-        </div>
-      )}
-
       {/* BEGIN: WindowMainGrid */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative min-h-0">
         {/* BEGIN: ProblemStatementView */}
         {!isFullscreen && (
-          <main className={`
-            ${mobileTab === 'problem' ? 'flex' : 'hidden'} lg:flex
-            w-full lg:w-[420px] xl:w-[480px] shrink-0 bg-[#fbf7f0] flex-col overflow-hidden border-b lg:border-b-0 lg:border-r border-stone-200/80 transition-all duration-300 h-full
-          `} data-purpose="problem-description">
+          <main className="h-[42vh] sm:h-[45vh] lg:h-full w-full lg:w-[420px] xl:w-[480px] shrink-0 bg-[#fbf7f0] flex flex-col overflow-hidden border-b lg:border-b-0 lg:border-r border-stone-200/80 transition-all duration-300" data-purpose="problem-description">
             {/* Horizontal Problem Selector */}
             <div className="px-4 sm:px-6 py-2.5 sm:py-3 border-b border-stone-200/70 bg-[#faebd7]/50 flex items-center justify-between text-xs select-none shrink-0">
               <div className="flex items-center space-x-1.5 overflow-x-auto py-0.5 custom-scrollbar max-w-[calc(100%-70px)] sm:max-w-none">
@@ -678,25 +641,12 @@ export function PracticeWorkspace({ onExit }: { onExit?: () => void }) {
               </div>
             </div>
 
-            {/* Mobile Jump to Editor Action Button */}
-            <div className="lg:hidden p-3 border-t border-stone-200/70 bg-[#faebd7]/40 shrink-0">
-              <button
-                onClick={() => setMobileTab('editor')}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#fd651e] hover:bg-[#ea5612] text-white font-mono text-xs font-semibold flex items-center justify-center gap-2 shadow-xs cursor-pointer active:scale-98 transition-all"
-              >
-                <span>Write Solution & Run Tests</span>
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </button>
-            </div>
           </main>
         )}
         {/* END: ProblemStatementView */}
 
         {/* BEGIN: Right Split Editor & Console Container */}
-        <div className={`
-          ${mobileTab === 'editor' ? 'flex' : 'hidden'} lg:flex
-          flex-1 bg-[#f4eee4] p-2 sm:p-3 flex-col gap-2 sm:gap-3 overflow-hidden h-full min-w-0
-        `} id="ide-workspace-container">
+        <div className="flex-1 bg-[#f4eee4] p-2 sm:p-3 flex flex-col gap-2 sm:gap-3 overflow-hidden h-full min-w-0" id="ide-workspace-container">
           {/* BEGIN: CodeEditorPanel */}
           <section 
             style={{ backgroundColor: isSepiaTheme ? '#fdfbf7' : '#ffffff' }}
